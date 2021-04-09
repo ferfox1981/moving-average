@@ -26,7 +26,6 @@ export class AppComponent implements OnInit{
 
 
   public ngOnInit() {
-    console.log('tamanho: '+window.innerWidth)
     let width = 1000;
     let height = 600;
     if (window.innerWidth < 500) {
