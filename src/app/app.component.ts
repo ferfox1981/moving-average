@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecuperarDadosService } from 'src/shared/recuperar-dados.service';
 import {formatDate} from '@angular/common';
-import { ChartType, getPackageForChart, ScriptLoaderService } from 'angular-google-charts';
+import { ScriptLoaderService } from 'angular-google-charts';
 import { ExportToCsv } from 'export-to-csv';
 
 @Component({
@@ -12,27 +12,10 @@ import { ExportToCsv } from 'export-to-csv';
 export class AppComponent implements OnInit{
 
   myData;
-
+  myOptions;
   chartColumns = ['', 'Deaths','Moving Average'];
 
-  myOptions = {
 
-    is3D: false,
-    'width':1000,
-    'height':600,
-    vAxis: {title: 'Deaths'},
-    hAxis: {title: 'Days'},
-   // title:'COVID Moving Average - Pernambco',
-    legend: {position: 'bottom', alignment:'center'},
-    seriesType: 'bars',
-    lineWidth: 5,
-    chartArea: {'width': '80%', 'height': '60%'},
-    series: {1: {type: 'line', color: 'red'}},
-    'backgroundColor': {
-      'fill': '#F4F4F4',
-      'opacity': 100
-   },
-  };
 
 
   constructor(
@@ -43,6 +26,31 @@ export class AppComponent implements OnInit{
 
 
   public ngOnInit() {
+    console.log(window.innerWidth)
+    let width = 1000;
+    let height = 600;
+    if (window.innerWidth < 500) {
+      width = 500;
+      height = 300;
+    }
+    this.myOptions = {
+
+      is3D: false,
+      'width':width,
+      'height':height,
+      vAxis: {title: 'Deaths'},
+      hAxis: {title: 'Days'},
+     // title:'COVID Moving Average - Pernambco',
+      legend: {position: 'bottom', alignment:'center'},
+      seriesType: 'bars',
+      lineWidth: 5,
+      chartArea: {'width': '80%', 'height': '60%'},
+      series: {1: {type: 'line', color: 'red'}},
+      'backgroundColor': {
+        'fill': '#F4F4F4',
+        'opacity': 100
+     },
+    };
 
     this.servico.recuperarDados().subscribe(value => {
       let dados;
