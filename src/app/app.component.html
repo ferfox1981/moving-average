@@ -1,0 +1,13 @@
+<strong><span style="display: flex; justify-content:center;">COVID Moving Average - Pernambuco, Brazil</span></strong>
+<div style="display: flex; justify-content:center; align-items:center;" *ngIf="myData" class="container-fluid">
+  <google-chart #container [data]="myData" type="ComboChart" style="border: 1px solid #ccc;" [options]="myOptions"
+    [columns]="chartColumns"></google-chart>
+  <div class="btn-group btn-group-toggle">
+    <label class="btn-primary" ngbButtonLabel (click)="export()">
+      Export to CSV
+    </label>
+
+  </div>
+
+</div>
+<a href="https://ferfox1981.github.io/"><i>By Fernando Raposo</i></a>
