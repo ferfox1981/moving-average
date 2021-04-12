@@ -1,5 +1,8 @@
 <strong><span style="display: flex; justify-content:center;">COVID Moving Average - Pernambuco, Brazil</span></strong>
-<div style="display: flex; justify-content:center; align-items:center;" *ngIf="myData" class="container-fluid">
+<div
+
+*ngIf="myData; else elseBlock"
+class="container-fluid exibit">
   <google-chart #container [data]="myData" type="ComboChart" style="border: 1px solid #ccc;" [options]="myOptions"
     [columns]="chartColumns"></google-chart>
   <div class="btn-group btn-group-toggle">
@@ -10,4 +13,11 @@
   </div>
 
 </div>
+<ng-template #elseBlock >
+  <div class="exibit">
+  <div class="spinner"></div>
+</div>
+</ng-template>
+<div class="exibit">
 <a href="https://ferfox1981.github.io/"><i>By Fernando Raposo</i></a>
+</div>
